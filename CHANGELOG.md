@@ -2,7 +2,7 @@
 
 All notable changes are documented here.
 
-## Unreleased
+## 0.1.1 - 2026-07-19
 
 - Prevent Windows console encoding failures in human-readable CLI output.
 - Add regression coverage for legacy console encodings and non-ASCII evidence.
