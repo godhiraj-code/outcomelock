@@ -39,6 +39,13 @@ def _safe(value: object) -> str:
     )
 
 
+def _console(text: object, *, error: bool = False) -> None:
+    stream = sys.stderr if error else sys.stdout
+    value = str(text)
+    encoding = stream.encoding or "utf-8"
+    stream.write(value.encode(encoding, errors="backslashreplace").decode(encoding) + "\n")
+
+
 def _json(payload: dict) -> str:
     return json.dumps({"schema_version": SCHEMA_VERSION, **payload}, indent=2)
 
@@ -47,13 +54,13 @@ def _emit(decisions: list[Decision], as_json: bool) -> None:
     if as_json:
         print(_json({"decisions": [item.as_dict() for item in decisions]}))
         return
-    icons = {"proceed": "✓", "suppress": "↷", "blocked": "!"}
+    markers = {"proceed": "[OK]", "suppress": "[SKIP]", "blocked": "[BLOCK]"}
     for item in decisions:
-        print(f"{icons[item.state]} {item.state.upper():8} {_safe(item.work_key)}")
-        print(f"  {_safe(item.reason)}")
+        _console(f"{markers[item.state]} {item.state.upper():8} {_safe(item.work_key)}")
+        _console(f"  {_safe(item.reason)}")
         if item.fact:
-            print(
-                f"  evidence: {_safe(item.fact.source)} · {_safe(item.fact.locator)} · "
+            _console(
+                f"  evidence: {_safe(item.fact.source)} | {_safe(item.fact.locator)} | "
                 f"{_safe(item.fact.observed_at)}"
             )
 
@@ -242,8 +249,8 @@ def run(args: argparse.Namespace) -> int:
         ]
         report = render_html(decisions, directory / "report.html", "OutcomeLock stale-work demo")
         _emit(decisions, False)
-        print(f"\nDemo written to {directory.resolve()}")
-        print(f"Open {report.resolve()}")
+        _console(f"\nDemo written to {directory.resolve()}")
+        _console(f"Open {report.resolve()}")
         return EXIT_OK
 
     store = EvidenceStore(_db_path(getattr(args, "db", None)))
@@ -309,14 +316,14 @@ def run(args: argparse.Namespace) -> int:
                 _json({"work_key": args.work_key, "observations": [vars(item) for item in facts]})
             )
         elif not facts:
-            print(f"No evidence for {_safe(args.work_key)}")
+            _console(f"No evidence for {_safe(args.work_key)}")
         else:
             for item in facts:
-                print(
+                _console(
                     f"{_safe(item.observed_at)}  {_safe(item.verdict.upper()):10} "
                     f"confidence={item.confidence:.2f}  {_safe(item.source)}"
                 )
-                print(f"  {_safe(item.locator)} · {_safe(item.summary)}")
+                _console(f"  {_safe(item.locator)} | {_safe(item.summary)}")
         return EXIT_OK
     if args.command == "check":
         store.require_initialized()
@@ -351,7 +358,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         return run(parser.parse_args(argv))
     except (ValueError, TypeError, OSError, sqlite3.Error, json.JSONDecodeError) as exc:
-        print(f"outcomelock: error: {_safe(exc)}", file=sys.stderr)
+        _console(f"outcomelock: error: {_safe(exc)}", error=True)
         return EXIT_INPUT
 
 
