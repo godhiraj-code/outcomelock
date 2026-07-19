@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/godhiraj-code/outcomelock/schemas/evidence.schema.json",
+  "title": "OutcomeLock evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "observations"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["work_key", "verdict", "source", "locator", "summary"],
+        "properties": {
+          "work_key": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"},
+          "verdict": {"enum": ["completed", "superseded", "ambiguous"]},
+          "source": {"type": "string", "minLength": 1},
+          "locator": {"type": "string", "minLength": 1},
+          "summary": {"type": "string", "minLength": 1},
+          "observed_at": {"type": "string", "format": "date-time"},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+[build-system]
+requires = ["hatchling==1.28.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "outcomelock"
+dynamic = ["version"]
+description = "Deterministic stale-work protection for autonomous AI agents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Dhiraj Das"}]
+keywords = ["ai-agents", "guardrails", "agent-reliability", "local-first", "sqlite", "devtools"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = []
+
+[project.scripts]
+outcomelock = "outcomelock.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/godhiraj-code/outcomelock"
+Issues = "https://github.com/godhiraj-code/outcomelock/issues"
+
+[tool.hatch.version]
+path = "src/outcomelock/__about__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/outcomelock"]
+
+[tool.coverage.run]
+source = ["outcomelock"]
+branch = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

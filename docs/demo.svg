@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">OutcomeLock stale work demo</title><desc id="desc">A terminal report suppresses completed tax work and allows a new website measurement.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#06101e"/><stop offset="1" stop-color="#102b49"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="20" stdDeviation="24" flood-opacity=".35"/></filter></defs>
+<rect width="1200" height="630" rx="30" fill="url(#bg)"/>
+<text x="80" y="95" fill="#e8f0fb" font-size="52" font-family="system-ui,sans-serif" font-weight="800">OutcomeLock</text>
+<text x="80" y="138" fill="#8da2bd" font-size="25" font-family="system-ui,sans-serif">Evidence check before agent execution</text>
+<g filter="url(#shadow)"><rect x="80" y="185" width="1040" height="350" rx="20" fill="#091525" stroke="#244160" stroke-width="2"/>
+<circle cx="115" cy="220" r="8" fill="#ef4444"/><circle cx="140" cy="220" r="8" fill="#f59e0b"/><circle cx="165" cy="220" r="8" fill="#10b981"/>
+<text x="110" y="292" fill="#f59e0b" font-size="27" font-family="ui-monospace,monospace" font-weight="700">↷ SUPPRESS</text>
+<text x="300" y="292" fill="#9bdcff" font-size="27" font-family="ui-monospace,monospace">tax.ay2026-27.prefiling-documents</text>
+<text x="110" y="338" fill="#c8d6e8" font-size="23" font-family="ui-monospace,monospace">Return filed. E-verification succeeded.</text>
+<text x="110" y="376" fill="#7f96b2" font-size="20" font-family="ui-monospace,monospace">official-confirmation · newer than plan · confidence 1.00</text>
+<line x1="110" y1="413" x2="1090" y2="413" stroke="#203653"/>
+<text x="110" y="469" fill="#10b981" font-size="27" font-family="ui-monospace,monospace" font-weight="700">✓ PROCEED</text>
+<text x="300" y="469" fill="#9bdcff" font-size="27" font-family="ui-monospace,monospace">website.measure.search-console</text>
+<text x="110" y="507" fill="#7f96b2" font-size="20" font-family="ui-monospace,monospace">No terminal or conflict evidence exists.</text></g>
+<text x="80" y="590" fill="#8da2bd" font-size="22" font-family="system-ui,sans-serif">Local-first · deterministic · zero runtime dependencies</text>
+</svg>

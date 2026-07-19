@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "actions": [
+    {
+      "id": "task-clean",
+      "work_key": "website.measure.search-console",
+      "title": "Measure search traffic",
+      "planned_at": "2026-07-19T13:00:00.000000Z"
+    }
+  ]
+}

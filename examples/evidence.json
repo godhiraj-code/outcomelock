@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "observations": [
+    {
+      "work_key": "tax.ay2026-27.prefiling-documents",
+      "verdict": "superseded",
+      "source": "official-confirmation",
+      "locator": "email:itr-everification-success",
+      "summary": "Return submitted and e-verification succeeded; pre-filing work is obsolete.",
+      "observed_at": "2026-07-19T12:00:00+00:00",
+      "confidence": 1.0
+    }
+  ]
+}

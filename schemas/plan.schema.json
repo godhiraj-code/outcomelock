@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/godhiraj-code/outcomelock/schemas/plan.schema.json",
+  "title": "OutcomeLock plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "actions"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["work_key"],
+        "properties": {
+          "id": {"type": "string"},
+          "work_key": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"},
+          "title": {"type": "string"},
+          "planned_at": {"type": "string", "format": "date-time"},
+          "metadata": {"type": "object"}
+        }
+      }
+    }
+  }
+}

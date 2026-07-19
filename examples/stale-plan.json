@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "actions": [
+    {
+      "id": "task-1",
+      "work_key": "tax.ay2026-27.prefiling-documents",
+      "title": "Collect documents before filing",
+      "planned_at": "2026-07-19T09:00:00+00:00"
+    },
+    {
+      "id": "task-2",
+      "work_key": "website.measure.search-console",
+      "title": "Measure search traffic",
+      "planned_at": "2026-07-19T13:00:00+00:00"
+    }
+  ]
+}

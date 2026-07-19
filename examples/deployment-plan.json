@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "actions": [
+    {
+      "id": "agent-task-17",
+      "work_key": "release.v1.4.0.deploy.production",
+      "title": "Deploy v1.4.0 to production",
+      "planned_at": "2026-07-19T16:30:00.000000Z"
+    },
+    {
+      "id": "agent-task-18",
+      "work_key": "release.v1.4.1.build",
+      "title": "Build v1.4.1 release candidate",
+      "planned_at": "2026-07-19T17:00:00.000000Z"
+    }
+  ]
+}

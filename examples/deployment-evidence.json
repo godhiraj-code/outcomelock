@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "observations": [
+    {
+      "work_key": "release.v1.4.0.deploy.production",
+      "verdict": "completed",
+      "source": "github-actions",
+      "locator": "run:947231/job:deploy-production",
+      "summary": "Production deployment completed and health check passed.",
+      "observed_at": "2026-07-19T16:42:18.384221Z",
+      "confidence": 1.0
+    }
+  ]
+}
