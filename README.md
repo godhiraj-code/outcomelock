@@ -18,11 +18,11 @@ Your agent planned an action. Then the user finished it elsewhere, an email conf
 OutcomeLock puts a deterministic evidence check between **plan** and **act**:
 
 ```text
-↷ SUPPRESS tax.ay2026-27.prefiling-documents
+[SKIP] SUPPRESS tax.ay2026-27.prefiling-documents
   Work is superseded; evidence is newer than the plan.
-  evidence: official-confirmation · email:itr-everification-success
+  evidence: official-confirmation | email:itr-everification-success
 
-✓ PROCEED  website.measure.search-console
+[OK] PROCEED  website.measure.search-console
   No completion or conflict evidence exists.
 ```
 

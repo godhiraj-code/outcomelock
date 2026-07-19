@@ -2,6 +2,12 @@
 
 All notable changes are documented here.
 
+## Unreleased
+
+- Prevent Windows console encoding failures in human-readable CLI output.
+- Add regression coverage for legacy console encodings and non-ASCII evidence.
+- Use portable, documented ASCII decision markers across platforms.
+
 ## 0.1.0 - 2026-07-19
 
 ### Added

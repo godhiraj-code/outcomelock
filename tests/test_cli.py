@@ -1,6 +1,9 @@
 import contextlib
 import io
 import json
+import os
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -212,7 +215,63 @@ class OutcomeLockCliTest(unittest.TestCase):
         for name in ("report.html", "plan.json", "evidence.json", "state.db"):
             self.assertTrue((directory / name).is_file())
         self.assertEqual(json.loads((directory / "plan.json").read_text())["schema_version"], "1.0")
+        self.assertIn("Demo written", output)
         self.assertIn("SUPPRESS", output)
+
+    def test_demo_survives_legacy_windows_console_encoding(self):
+        directory = self.root / "cp1252-demo"
+        env = {**os.environ, "PYTHONIOENCODING": "cp1252:strict"}
+        result = subprocess.run(
+            [sys.executable, "-m", "outcomelock", "demo", "--directory", str(directory)],
+            capture_output=True,
+            env=env,
+            text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("[SKIP]", result.stdout)
+        self.assertTrue((directory / "report.html").is_file())
+
+        database = directory / "unicode.db"
+        asserted = subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "outcomelock",
+                "assert",
+                "task.unicode",
+                "--verdict",
+                "completed",
+                "--source",
+                "tracker-✅",
+                "--locator",
+                "row:1",
+                "--summary",
+                "Finished 🚀",
+                "--db",
+                str(database),
+            ],
+            capture_output=True,
+            env=env,
+            text=True,
+        )
+        self.assertEqual(asserted.returncode, 0, asserted.stderr)
+        history = subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "outcomelock",
+                "history",
+                "task.unicode",
+                "--db",
+                str(database),
+            ],
+            capture_output=True,
+            env=env,
+            text=True,
+        )
+        self.assertEqual(history.returncode, 0, history.stderr)
+        self.assertIn("tracker-\\u2705", history.stdout)
+        self.assertIn("Finished \\U0001f680", history.stdout)
 
 
 if __name__ == "__main__":
