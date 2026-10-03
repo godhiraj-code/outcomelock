@@ -44,6 +44,18 @@ class OutcomeLockCoreTest(unittest.TestCase):
     def test_no_evidence_proceeds(self):
         self.assertEqual(self.decide().state, "proceed")
 
+    def test_readonly_store_with_uri_reserved_characters(self):
+        path = Path(self.temp.name) / "state #100%.db"
+        store = EvidenceStore(path)
+        store.record(Observation("task.done", "completed", "test", "local", "Done"))
+        assert store.count() == 1
+        assert store.facts("task.done")[0].summary == "Done"
+        connection = store.connect(readonly=True)
+        try:
+            assert connection.execute("PRAGMA query_only").fetchone()[0] == 1
+        finally:
+            connection.close()
+
     def test_newer_completion_suppresses_stale_plan(self):
         self.record()
         decision = self.decide()

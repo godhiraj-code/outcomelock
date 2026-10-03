@@ -80,7 +80,7 @@ class EvidenceStore:
         if readonly:
             if not self.path.is_file():
                 raise ValueError(f"evidence store does not exist: {self.path}")
-            uri = f"file:{self.path.resolve().as_posix()}?mode=ro"
+            uri = f"{self.path.resolve().as_uri()}?mode=ro"
             db = sqlite3.connect(uri, uri=True)
             db.execute("PRAGMA query_only=ON")
         else:
