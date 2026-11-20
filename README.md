@@ -57,7 +57,7 @@ OutcomeLock protects that boundary with four rules:
 ## 30-second demo
 
 ```bash
-pip install "outcomelock @ git+https://github.com/godhiraj-code/outcomelock.git"
+pip install outcomelock
 outcomelock demo
 ```
 
@@ -152,7 +152,7 @@ See [`schemas/plan.schema.json`](schemas/plan.schema.json) and [`schemas/evidenc
 ## GitHub Action
 
 ```yaml
-- uses: godhiraj-code/outcomelock@v0
+- uses: godhiraj-code/outcomelock@v0.1.1
   with:
     plan: agent-plan.json
     evidence: completion-evidence.json
