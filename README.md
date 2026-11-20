@@ -13,6 +13,14 @@
 
 ![OutcomeLock blocks a stale tax task while allowing new work](docs/demo.svg)
 
+## Quickstart
+
+```bash
+pip install outcomelock && outcomelock demo
+```
+
+Then open `outcomelock-demo/report.html`.
+
 Your agent planned an action. Then the user finished it elsewhere, an email confirmed it, or a canonical tracker changed. The old plan is still queued.
 
 OutcomeLock puts a deterministic evidence check between **plan** and **act**:
@@ -27,6 +35,13 @@ OutcomeLock puts a deterministic evidence check between **plan** and **act**:
 ```
 
 No LLM judge. No cloud account. No probabilistic memory lookup.
+
+```mermaid
+flowchart LR
+    A["Agent Attempt 1 (Executed & Locked)<br/>terminal evidence recorded for the work_key"] --> B["Agent Attempt 2 (Blocked by Fail-Closed Policy)<br/>outcomelock guard exits non-zero"]
+```
+
+For the second attempt, strong completion evidence gives `suppress` (exit `2`). Ambiguous, contradictory, or low confidence evidence gives `blocked` (exit `3`). Only exit `0` may reach the executor.
 
 ## Why this exists
 
@@ -214,3 +229,10 @@ See [SECURITY.md](SECURITY.md).
 ## License
 
 MIT
+
+---
+
+### Related Tools
+* **[`pytest-glow-report`](https://github.com/godhiraj-code/pytest-glow-report)** — Zero-config interactive HTML/JSON reports for `pytest` with SQLite-backed run history.
+* **[`outcomelock`](https://github.com/godhiraj-code/outcomelock)** — Prevent autonomous AI agents from re-executing already completed work with fail-closed terminal assertions.
+* **[`flow2skill`](https://github.com/godhiraj-code/flow2skill)** — Compile Playwright codegen recordings into redacted, review-gated agent skills and `pytest` proofs.
