@@ -2,6 +2,10 @@
 
 All notable changes are documented here.
 
+## 0.1.2 - 2026-11-25
+
+- Docs only: publish the current README to PyPI. The 0.1.1 PyPI page showed a git install line and a `@v0` action tag that does not exist.
+
 ## 0.1.1 - 2026-07-19
 
 - Prevent Windows console encoding failures in human-readable CLI output.
